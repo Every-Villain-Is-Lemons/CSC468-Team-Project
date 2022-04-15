@@ -1,5 +1,5 @@
 pipeline {
-    agent none 
+    agent none
     environment {
         registry = "thescavenger126/go_server"
         docker_user = "thescavenger126"
