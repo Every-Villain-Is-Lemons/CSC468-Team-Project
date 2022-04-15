@@ -17,6 +17,7 @@ kubectl delete deploy webui
 kubectl delete deploy worker
 
 rm -r CSC468-Team-Project
+rm -r ram_coin
 # type 'y' two times
 
 
