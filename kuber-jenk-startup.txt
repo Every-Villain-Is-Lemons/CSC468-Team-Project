@@ -1,0 +1,85 @@
+This file is for the sole purpose of informing users how to get jenkins up and running, IT DOES NOT DO IT AUTOMATICALLY.
+
+1) Get Jenkins password
+run these two commands and copy the printed password:
+bash /local/repository/launch_jenkins.sh
+kubectl exec $(kubectl get pods -n jenkins | grep jenkins | awk '{print $1}') -n jenkins -- cat /var/jenkins_home/secrets/initialAdminPassword
+
+2) Log into jenkins 
+run this command, get Internal-IP, go to IP:30000, use password to login to jenkins
+kubectl get nodes -o wide
+**once logged in, install Kubernetes and SSH Agent plugins
+
+3) Get public key as a credential for jenkins
+run the following commands:
+ssh-keygen  #(then press enter a couple times)
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+cat ~/.ssh/id_rsa
+
+4) Add Head Node public key as credential to Jenkins
+On Jenkins Dashboard, go to Manage Jenkins/Manage Credentials.
+Click on Jenkins under Stores scoped to Jenkins, then Global credentials (unrestricted).
+Click on Add Credentials.
+Fill in the boxes as follows:
+Kind: SSH Username with private name
+Scope: Global (Jenkins, nodes, items, all child items, etc)
+ID: cloudlab
+Username: Enter your CloudLab login username here.
+Private Key: Check Enter directly, click Add, then paster the previously copied private key (INCLUDING ALL DASHES) to this box.
+Click OK.
+
+5) Configure Built-In Node
+On Jenkins Dashboard, go to Manage Jenkins/Manage Nodes and Clouds.
+Click on the gear icon for Built-In Node
+Fill in the boxes as follows:
+Number of executors: 1
+Labels: deploy
+Usage: Only build jobs with label expressions matching this node
+
+6) Configure Kubernetes Cloud
+On Jenkins Dashboard, go to Manage Jenkins/Manage Nodes and Clouds/Configure Clouds.
+Select Kubernetes from Add a new cloud dropbox.
+Click on Kubernetes Cloud Details.
+Fill in the boxes as follows:
+Kubernetes Name: kubernetes
+Kubernetes URL: run "kubectl cluster-info" on head node and get URL
+Check Direction Connection box.
+Click Test Connection to confirm connection.
+
+7) Configure Pod Templates
+Continue on the Configure Clouds from the previous slide.
+Click Add Pod Template then Pod Template details
+Fill in the boxes as follows:
+Name: agent-template
+Namespace: jenkins
+Usage: Only build jobs with label expressions matching this node
+Do not add container yet
+Click on Add Volume:
+Select Host Path Volume
+Enter /var/run/docker.sock for both Host path and Mount path.
+This is to enable the building and pushing of Docker images.
+
+8) Configure Container Templates
+In the scope of Pod Template
+Click Add Container
+Container Template Name: docker
+Docker image: docker
+Click Add Environment Variable for the docker container template
+Prior to this, go to hub.docker.com and login to your Docker Hub account.
+Go to Account Settings
+Go to Security.
+Click on New Access Token.
+Enter a short description for this token, allow Access permission to be Read, Write, Delete, and then click Generate.
+Store this key some where safe.
+First environment variable:
+Key: DOCKER_TOKEN
+Value: the access token copied from before.
+Second environment variable:
+Key: DOCKER_REGISTRY
+Value: YOUR_DOCKERHUB_USERNAME/go_server
+Third environment variable:
+Key: DOCKER_USER
+Value: YOUR_DOCKERHUB_USERNAME
+Click Apply and then Save.
+
+9) Setup Jenkins Pipelines
