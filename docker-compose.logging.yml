@@ -1,24 +1,6 @@
 version: "2"
 
 services:
-  
-  rng:
-    build: rng
-    ports:
-    - "8001:80"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: udp://localhost:12201
-
-  hasher:
-    build: hasher
-    ports:
-    - "8002:80"
-    logging:
-      driver: gelf
-      options:
-        gelf-address: udp://localhost:12201
 
   webui:
     build: webui
@@ -38,10 +20,4 @@ services:
       options:
         gelf-address: udp://localhost:12201
 
-  worker:
-    build: worker
-    logging:
-      driver: gelf
-      options:
-        gelf-address: udp://localhost:12201
 
