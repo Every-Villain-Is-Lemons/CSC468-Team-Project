@@ -32,6 +32,7 @@ kubectl delete deploy rng -n ramcoin
 kubectl delete deploy webui -n ramcoin
 kubectl delete deploy worker -n ramcoin
 
+kubectl delete -all ns
 rm -r CSC468-Team-Project
 rm -r ram_coin
 # type 'y' two times
