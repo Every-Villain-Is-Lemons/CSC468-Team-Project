@@ -1,15 +1,6 @@
 version: "2"
 
 services:
-  rng:
-    build: rng
-    ports:
-    - "8001:80"
-
-  hasher:
-    build: hasher
-    ports:
-    - "8002:80"
 
   webui:
     build: webui
@@ -20,7 +11,3 @@ services:
 
   redis:
     image: redis
-
-  worker:
-    build: worker
-
