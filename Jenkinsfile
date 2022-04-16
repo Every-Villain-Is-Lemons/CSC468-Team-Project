@@ -15,9 +15,8 @@ pipeline {
             steps{
                 container('docker') {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
-                    sh 'cd worker'
                     sh 'pwd'
-                    sh 'docker build -t worker Dockerfile'
+                    sh 'docker build -t worker worker/Dockerfile'
                     sh 'docker push worker'
                     sh 'cd ..'
                 }
