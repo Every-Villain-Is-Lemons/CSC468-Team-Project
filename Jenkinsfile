@@ -28,9 +28,9 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@10.106.180.200:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@10.106.180.200 kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@10.106.180.200 kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins'
+                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins'
                 }
             }
         }
