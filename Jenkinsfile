@@ -16,7 +16,7 @@ pipeline {
                 container('docker') {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
                     sh 'pwd'
-                    sh 'docker build -t $DOCKER_REGISTRY -f worker/Dockerfile .'
+                    sh 'docker build -t $DOCKER_REGISTRY:$BUILD_NUMBER -f worker/Dockerfile .'
                     sh 'docker push $DOCKER_REGISTRY:$BUILD_NUMBER'
                 }
             }
