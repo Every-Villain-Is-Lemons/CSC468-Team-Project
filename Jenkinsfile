@@ -38,6 +38,7 @@ pipeline {
                     sh 'kubectl get namespace'
                     sh 'kubectl get svc --namespace=kubernetes-dashboard'
                     sh "kubectl patch service kubernetes-dashboard -n kubernetes-dashboard --type='json' --patch='[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":30082}]'"
+                    // just needed to change the file
                 }
             }
         }
