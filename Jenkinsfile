@@ -1,9 +1,8 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/go_server"
+        registry = "thescavenger126/ramcoin"
         docker_user = "thescavenger126"
-        docker_app = "go_server"
         GOCACHE = "/tmp"
     }
     stages {
@@ -15,9 +14,8 @@ pipeline {
             }
             steps{
                 container('docker') {
-                    sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
-                    sh 'docker build -t $DOCKER_REGISTRY:$BUILD_NUMBER .'
-                    sh 'docker push $DOCKER_REGISTRY:$BUILD_NUMBER'
+                    sh 'docker-compose -f docker-compose.images.yml build'
+                    sh 'docker-compose -f docker-compose.images.yml push'
                 }
             }
         }
@@ -29,12 +27,14 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh "sed -i 's/DOCKER_USER/${docker_user}/g' deployment.yml"
-                    sh "sed -i 's/DOCKER_APP/${docker_app}/g' deployment.yml"
-                    sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g' deployment.yml"
-                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@130.127.132.208:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@130.127.132.208 kubectl apply -f /users/tylerp/deployment.yml -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@130.127.132.208 kubectl apply -f /users/tylerp/service.yml -n jenkins'                                        
+                    sh 'kubectl create deployment redis --image=redis'
+                    sh 'kubectl create deployment worker --image=127.0.0.2:30000/worker:v0.1'
+                    sh 'kubectl expose deployment redis --port 6379'
+                    sh 'kubectl apply -f dashboard-insecure.yaml'
+                    sh 'kubectl apply -f socat.yaml'
+                    sh 'kubectl get namespace'
+                    sh 'kubectl get svc --namespace=kubernetes-dashboard'
+                    sh "kubectl patch service kubernetes-dashboard -n kubernetes-dashboard --type='json' --patch='[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":30082}]'"
                 }
             }
         }
