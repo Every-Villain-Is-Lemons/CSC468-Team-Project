@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/ramcoin"
+        registry = "thescavenger126/gokoins-worker"
         docker_user = "thescavenger126"
         GOCACHE = "/tmp"
     }
@@ -16,7 +16,7 @@ pipeline {
                 container('docker') {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
                     sh 'pwd'
-                    sh 'docker build -t worker -f worker/Dockerfile .'
+                    sh 'docker build -t $REGISTRY -f worker/Dockerfile .'
                     sh 'docker push $DOCKER_USER/worker'
                 }
             }
