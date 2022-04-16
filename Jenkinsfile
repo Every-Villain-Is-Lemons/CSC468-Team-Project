@@ -29,15 +29,9 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh 'kubectl create deployment redis --image=redis'
-                    sh 'kubectl create deployment worker --image=127.0.0.2:30000/worker:v0.1'
-                    sh 'kubectl expose deployment redis --port 6379'
-                    sh 'kubectl apply -f dashboard-insecure.yaml'
-                    sh 'kubectl apply -f socat.yaml'
-                    sh 'kubectl get namespace'
-                    sh 'kubectl get svc --namespace=kubernetes-dashboard'
-                    sh "kubectl patch service kubernetes-dashboard -n kubernetes-dashboard --type='json' --patch='[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":30082}]'"
-                    // just needed to change the file
+                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@10.106.180.200:~/'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@10.106.180.200 kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@10.106.180.200 kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins'
                 }
             }
         }
