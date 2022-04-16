@@ -83,3 +83,15 @@ Value: YOUR_DOCKERHUB_USERNAME
 Click Apply and then Save.
 
 9) Setup Jenkins Pipelines
+Login to the Jenkins server.
+Select New Item, and create a new Pipelinenamed _____
+On Build Triggers tab, select GitHub hook trigger for GITScm polling,
+On Pipeline tab, select the followings:
+Definition: Pipeline script from SCM (this will open new options)
+SCM: Git
+Branch Specifier: */[BRANCH OF DESIRED PART, LIKE WORKER OR HASHER]
+Click Save
+
+10) Run
+Click Build Now to activate the first build
+Go to the cloudlab URL:30080 (or 30082 for kubernetes page) and see if it worked
