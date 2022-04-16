@@ -17,8 +17,7 @@ pipeline {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
                     sh 'pwd'
                     sh 'docker build -t worker -f worker/Dockerfile .'
-                    sh 'docker push worker'
-                    sh 'cd ..'
+                    sh 'docker push $DOCKER_USER/worker'
                 }
             }
         }
