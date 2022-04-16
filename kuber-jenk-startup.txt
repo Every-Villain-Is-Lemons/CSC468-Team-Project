@@ -82,7 +82,10 @@ Key: DOCKER_USER
 Value: YOUR_DOCKERHUB_USERNAME
 Click Apply and then Save.
 
-9) Setup Jenkins Pipelines
+9) Jenkinsfile
+Update Jenkinsfile so that IP address for SSH Agent is the second half of cloudlab SSH (after @)
+
+10) Setup Jenkins Pipelines
 Login to the Jenkins server.
 Select New Item, and create a new Pipelinenamed _____
 On Build Triggers tab, select GitHub hook trigger for GITScm polling,
@@ -92,6 +95,6 @@ SCM: Git
 Branch Specifier: */[BRANCH OF DESIRED PART, LIKE WORKER OR HASHER]
 Click Save
 
-10) Run
+11) Run
 Click Build Now to activate the first build
 Go to the cloudlab URL:30080 (or 30082 for kubernetes page) and see if it worked
