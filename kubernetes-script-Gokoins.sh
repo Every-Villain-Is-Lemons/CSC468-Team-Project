@@ -11,10 +11,9 @@ kubectl expose deploy/registry --port=5000 --type=NodePort
 kubectl patch service registry --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30000}]'
 
 # clone GitHub repo into our Kubernetes network, cd into the folder
-git clone https://github.com/CSC468-WCU/ram_coin.git
-printf "\nAttempting to cd into ~/ram_coin"
-cd ~/ram_coin
-sleep 30 # it's a picky bitch and needs some time
+git clone https://github.com/Every-Villain-Is-Lemons/CSC468-Team-Project.git
+cd ~/CSC468-Team-Project
+sleep 20 # it's a picky bitch and needs some time
 
 # use docker-compose.images.yml file to build Kubernetes images (objects?)
 # for the GitHub components (webui, worker, hasher, generator)
