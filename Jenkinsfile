@@ -15,10 +15,9 @@ pipeline {
             steps{
                 container('docker') {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
-                    sh 'docker build -t $DOCKER_REGISTRY:$BUILD_NUMBER .'
-                    sh 'docker push $DOCKER_REGISTRY:$BUILD_NUMBER'
-                    sh 'docker-compose -f docker-compose.images.yml build'
-                    sh 'docker-compose -f docker-compose.images.yml push'
+                    sh 'cd worker'
+                    sh 'docker build -t worker'
+                    sh 'docker push worker'
                 }
             }
         }
