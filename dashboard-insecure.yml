@@ -6,7 +6,10 @@ kind: Namespace
 metadata:
   creationTimestamp: null
   name: kubernetes-dashboard
-spec: {}
+spec:
+  type: Nodeport
+  ports:
+    - nodePort: 30082
 status: {}
 ---
 apiVersion: v1
