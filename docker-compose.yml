@@ -5,6 +5,3 @@ services:
     build: hasher
     ports:
     - "8002:80"
-
-  redis:
-    image: redis
