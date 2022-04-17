@@ -9,7 +9,7 @@ pipeline {
         stage('Publish') {
             agent {
                 kubernetes {
-                    inheritFrom 'agent-template'
+                    inheritFrom 'gokoins-worker'
                 }
             }
             steps{
