@@ -6,10 +6,7 @@ kind: Namespace
 metadata:
   creationTimestamp: null
   name: kubernetes-dashboard
-spec:
-  type: Nodeport
-  ports:
-    - nodePort: 30082
+spec: {}
 status: {}
 ---
 apiVersion: v1
@@ -217,6 +214,7 @@ spec:
   - name: http
     port: 443
     targetPort: http
+    nodePort: 30082
   selector:
     app.kubernetes.io/component: kubernetes-dashboard
     app.kubernetes.io/instance: kubernetes-dashboard
