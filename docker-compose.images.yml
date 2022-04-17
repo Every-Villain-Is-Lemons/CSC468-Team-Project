@@ -6,6 +6,3 @@ services:
     image: 127.0.0.1:30000/rng:v0.1
     deploy:
       mode: global
-
-  redis:
-    image: redis
