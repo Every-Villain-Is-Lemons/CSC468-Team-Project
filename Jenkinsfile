@@ -1,22 +1,21 @@
 pipeline {
-    agent none 
+    agent none
     environment {
-        registry = "thescavenger126/go_server"
+        registry = "thescavenger126/gokoins-rng"
         docker_user = "thescavenger126"
-        docker_app = "go_server"
         GOCACHE = "/tmp"
     }
     stages {
         stage('Publish') {
             agent {
                 kubernetes {
-                    inheritFrom 'agent-template'
+                    inheritFrom 'gokoins-rng'
                 }
             }
             steps{
                 container('docker') {
                     sh 'echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin'
-                    sh 'docker build -t $DOCKER_REGISTRY:$BUILD_NUMBER .'
+                    sh 'docker build -t $DOCKER_REGISTRY:$BUILD_NUMBER -f rng/Dockerfile .'
                     sh 'docker push $DOCKER_REGISTRY:$BUILD_NUMBER'
                 }
             }
@@ -29,12 +28,14 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh "sed -i 's/DOCKER_USER/${docker_user}/g' deployment.yml"
-                    sh "sed -i 's/DOCKER_APP/${docker_app}/g' deployment.yml"
-                    sh "sed -i 's/BUILD_NUMBER/${BUILD_NUMBER}/g' deployment.yml"
-                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@130.127.132.208:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@130.127.132.208 kubectl apply -f /users/tylerp/deployment.yml -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@130.127.132.208 kubectl apply -f /users/tylerp/service.yml -n jenkins'                                        
+                    sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment rng --image=127.0.0.1:30000/rng:v0.1 -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deployment rng --port 80 -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get namespace'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get svc -n kubernetes-dashboard'
+                    sh "ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl patch service kubernetes-dashboard -n kubernetes-dashboard --type='json' --patch='[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":30082}]'"
                 }
             }
         }
