@@ -36,7 +36,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get namespace'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get svc -n kubernetes-dashboard'
                     
-                    # MUST MANUALLY PATCH WEBUI TO 30080
+                    // MUST MANUALLY PATCH WEBUI TO 30080
                 }
             }
         }
