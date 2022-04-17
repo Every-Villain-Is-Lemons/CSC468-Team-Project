@@ -7,8 +7,3 @@ services:
     image: 127.0.0.1:30000/webui:v0.1
     ports:
     - "8000:80"
-
-  redis:
-    image: redis
-
-
