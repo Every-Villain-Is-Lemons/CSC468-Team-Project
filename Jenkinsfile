@@ -35,7 +35,6 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get namespace'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get svc -n kubernetes-dashboard'
-                    sh "ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl patch service kubernetes-dashboard -n kubernetes-dashboard --type='json' --patch='[{\"op\": \"replace\", \"path\": \"/spec/ports/0/nodePort\", \"value\":30082}]'"
                 }
             }
         }
