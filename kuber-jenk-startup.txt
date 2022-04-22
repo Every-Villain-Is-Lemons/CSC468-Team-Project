@@ -50,7 +50,7 @@ Click Test Connection to confirm connection.
 Continue on the Configure Clouds from the previous slide.
 Click Add Pod Template then Pod Template details
 Fill in the boxes as follows:
-Name: agent-template
+Name: gokoins-[name of repo]
 Namespace: jenkins
 Usage: Only build jobs with label expressions matching this node
 Do not add container yet
