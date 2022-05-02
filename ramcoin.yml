@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: webui
-        image: 127.0.0.1:30000/webui:v0.1
+        image: clnodevm020-1.clemson.cloudlab.us:30080/webui:v0.1
         ports:
           - name: http-port
             containerPort: 80
