@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rng
-        image: 130.127.132.209:30000/rng:v0.1
+        image: 127.0.0.1:30000/rng:v0.1
         ports:
           - name: http-port
             containerPort: 80
