@@ -4,6 +4,6 @@ services:
 
   webui:
     build: webui
-    image: clnodevm020-1.clemson.cloudlab.us:30080/webui:v0.1
+    image: 130.127.132.209:30000/webui:v0.1
     ports:
     - "8000:80"
