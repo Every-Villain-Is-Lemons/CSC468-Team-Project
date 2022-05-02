@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/Every-Villain-Is-Lemons/CSC468-Team-Project/worker"
+        registry = "thescavenger126/gokoins-worker"
         docker_user = "thescavenger126"
         GOCACHE = "/tmp"
     }
@@ -30,7 +30,7 @@ pipeline {
                 sshagent(credentials: ['cloudlab']) {
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment redis --image=redis -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment worker --image=130.127.132.209:30000/worker:v0.1 -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment worker --image=127.0.0.1:30000/worker:v0.1 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deployment redis --port 6379 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'

@@ -6,6 +6,6 @@ services:
 
   worker:
     build: worker
-    image: 130.127.132.209:30000/worker:v0.1
+    image: 127.0.0.1:30000/worker:v0.1
     deploy:
       replicas: 10
