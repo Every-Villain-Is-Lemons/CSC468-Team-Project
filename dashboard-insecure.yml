@@ -259,7 +259,7 @@ spec:
       containers:
       - args:
         - --namespace=kubernetes-dashboard
-        - --sidecar-host=http://127.0.0.1:8000
+        - --sidecar-host=http://130.127.132.209:8000
         - --enable-skip-login
         - --enable-insecure-login
         image: kubernetesui/dashboard:v2.5.0

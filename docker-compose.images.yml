@@ -3,6 +3,6 @@ version: "3"
 services:
   rng:
     build: rng
-    image: 127.0.0.1:30000/rng:v0.1
+    image: 130.127.132.209:30000/rng:v0.1
     deploy:
       mode: global
