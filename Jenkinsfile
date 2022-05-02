@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/Every-Villain-Is-Lemons/CSC468-Team-Project/webui"
+        registry = "thescavenger126/gokoins-webui"
         docker_user = "thescavenger126"
         GOCACHE = "/tmp"
     }
@@ -29,12 +29,10 @@ pipeline {
             steps {
                 sshagent(credentials: ['cloudlab']) {
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment webui --image=130.127.132.209:30000/webui:v0.1 -n jenkins'                    
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment webui --image=127.0.0.1:30000/webui:v0.1 -n jenkins'                    
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deploy/webui --type=NodePort --port=80 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
-                    
-                    // MANUAL: kubectl patch svc webui --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30080}]' -n jenkins
                 }
             }
         }
