@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/Every-Villain-Is-Lemons/hasher"
+        registry = "thescavenger126/Every-Villain-Is-Lemons/CSC468-Team-Project/hasher"
         docker_user = "thescavenger126"
         GOCACHE = "/tmp"
     }
