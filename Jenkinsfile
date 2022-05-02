@@ -33,6 +33,8 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deploy/webui --type=NodePort --port=80 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
+                    
+                    // MANUAL: kubectl patch svc webui --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30080}]' -n jenkins
                 }
             }
         }
