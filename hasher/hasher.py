@@ -8,7 +8,7 @@ import hashlib
 app = Flask(__name__)
 
 # Enable debugging if the DEBUG environment variable is set and starts with Y
-DEBUG = os.environ.get("DEBUG", "").lower().startswith('y')
+app.debug = os.environ.get("DEBUG", "").lower().startswith('y')
 
 hostname = socket.gethostname()
 
