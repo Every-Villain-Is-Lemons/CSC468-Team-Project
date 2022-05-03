@@ -4,9 +4,10 @@ metadata:
   name: webui
 spec:
   type: NodePort
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 30080
   selector:
     app: webui
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+      nodePort: 30080
