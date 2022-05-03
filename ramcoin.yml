@@ -15,7 +15,6 @@ spec:
       containers:
       - name: webui
         image: 127.0.0.1:30000/webui:v0.1
-        ports:
-          - name: http-port
-            containerPort: 80
-            nodePort: 30080
+        env:
+          - name: "PORT"
+          - value: 30080
