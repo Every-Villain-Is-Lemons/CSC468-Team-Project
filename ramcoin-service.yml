@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: webui
 spec:
-  type: NodePort
   ports:
     - port: 80
       targetPort: 80
@@ -13,3 +12,4 @@ spec:
       nodePort: 30080
   selector:
     app: webui
+  type: NodePort
