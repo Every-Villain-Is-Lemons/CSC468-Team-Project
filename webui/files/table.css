@@ -1,0 +1,21 @@
+.leader-table {
+    width: 400px;
+    border-spacing: 1px;
+}
+
+th {
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+body {
+    background-color: orange;
+}
