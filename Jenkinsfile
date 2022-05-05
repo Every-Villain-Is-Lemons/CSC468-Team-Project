@@ -28,14 +28,12 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh 'sed -i "s/DOCKER_USER/${docker_user}/g" ramcoin.yml'
-                    sh 'sed -i "s/DOCKER_APP/${docker_app}/g" ramcoin.yml'
-                    sh 'sed -i "s/BUILD_NUMBER/$BUILD_NUMBER/g" ramcoin.yml'
+                    sh 'sed -i "s/DOCKER_USER/${docker_user}/g" webui.yml'
+                    sh 'sed -i "s/DOCKER_APP/${docker_app}/g" webui.yml'
+                    sh 'sed -i "s/BUILD_NUMBER/$BUILD_NUMBER/g" webui.yml'
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins' 
-                    
-                    // MANUAL: kubectl patch svc webui --type='json' --patch='[{"op": "replace", "path": "/spec/ports/0/nodePort", "value":30080}]' -n jenkins
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/webui.yml -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/webui-service.yml -n jenkins' 
                 }
             }
         }
