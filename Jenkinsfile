@@ -1,8 +1,7 @@
 pipeline {
     agent none
     environment {
-        registry = "thescavenger126/gokoins-webui"
-        docker_user = "thescavenger126"
+        docker_app = "gokoins-webui"
         GOCACHE = "/tmp"
     }
     stages {
@@ -29,6 +28,9 @@ pipeline {
             steps {
                 sshagent(credentials: ['cloudlab']) {
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
+                    sh "sed -i 's/DOCKER_USER/$DOCKER_USER/g' ramcoin.yml"
+                    sh "sed -i 's/DOCKER_APP/${docker_app}/g' ramcoin.yml"
+                    sh "sed -i 's/BUILD_NUMBER/$BUILD_NUMBER/g' ramcoin.yml"
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins' 
                     
