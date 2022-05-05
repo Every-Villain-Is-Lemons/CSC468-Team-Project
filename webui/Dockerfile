@@ -6,4 +6,5 @@ RUN npm install redis@3
 COPY webui/files/ /files/
 COPY webui/webui.js /
 CMD ["node", "/webui.js"]
+CMD ["echo", "hello"]
 EXPOSE 80
