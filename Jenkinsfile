@@ -28,9 +28,13 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
+                    sh 'sed -i "s/DOCKER_USER/${docker_user}/g" worker.yml'
+                    sh 'sed -i "s/DOCKER_APP/${docker_app}/g" worker.yml'
+                    sh 'sed -i "s/BUILD_NUMBER/$BUILD_NUMBER/g" worker.yml'
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/worker.yml -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/worker-service.yml -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment redis --image=redis -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment worker --image=127.0.0.1:30000/worker:v0.1 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deployment redis --port 6379 -n jenkins'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
                     sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
