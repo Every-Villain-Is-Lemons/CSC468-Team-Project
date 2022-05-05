@@ -28,9 +28,12 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
+                    sh 'sed -i "s/DOCKER_USER/${docker_user}/g" ramcoin.yml'
+                    sh 'sed -i "s/DOCKER_APP/${docker_app}/g" ramcoin.yml'
+                    sh 'sed -i "s/BUILD_NUMBER/$BUILD_NUMBER/g" ramcoin.yml'
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment hasher --image=127.0.0.1:30000/hasher:v0.1 -n jenkins'                    
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deployment hasher --port 80 -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin.yml -n jenkins'                    
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/ramcoin-service.yml -n jenkins'
                 }
             }
         }
