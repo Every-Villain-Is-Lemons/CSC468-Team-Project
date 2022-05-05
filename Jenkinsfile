@@ -3,7 +3,7 @@ pipeline {
     environment {
         registry = "thescavenger126/gokoins-rng"
         docker_user = "thescavenger126"
-        docker_app = "gokoins-webui"
+        docker_app = "gokoins-rng"
         GOCACHE = "/tmp"
     }
     stages {
