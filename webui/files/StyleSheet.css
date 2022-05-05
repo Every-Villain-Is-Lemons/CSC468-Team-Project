@@ -1,0 +1,677 @@
+html,body
+{
+    margin:0;
+}
+
+img
+{
+	width: 100%;
+	margin:0;
+    height: 375px;
+
+}
+
+.navigation_bar
+{
+    overflow: hidden;
+    background-color: #bd5d5d;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1000;
+}
+
+.center_navigation_bar
+{
+  display: table;
+  margin: 0 auto;
+}
+
+.center_navigation_bar button
+{
+  margin-right: 125px;
+}
+
+.center_navigation_bar a 
+{
+	text-align: center;
+    float: left;
+    display: block;
+    color: #FFF5EE;
+    padding: 5px 40px;
+    text-decoration: none;
+	font-family: 'Spectral SC';
+}
+
+.index_link
+{
+text-decoration: underline;	
+}
+
+.center_navigation_bar a:hover
+{
+	text-decoration: underline;
+	color: #eca649;	
+}
+
+.img_remove_overlay
+{
+	margin-top: 1px;
+}
+
+.title
+{
+text-align: center;
+font-family: 'Spectral SC';
+text-decoration: underline;
+}
+
+
+.search_create_style
+{
+margin: auto;
+width:500px;
+text-align: center;
+}
+
+.search_create_style button
+{
+padding-top: 5px;
+padding-bottom: 5px;
+font-family: 'Spectral SC';
+border-radius: 15px;
+background-color: #bba4a4;
+color: #FFFFFF;
+font-size: 20px;
+}
+
+.search_create_style button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #e88d16;
+}
+
+.footer_bar{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #181818 ;
+}
+.footer_style
+{
+	margin: auto;
+	text-align: center;
+	padding: .5em;
+	color: #FFFFFF;
+	display: table;
+	margin: 0 auto;
+	font-family: 'Spectral SC';
+}
+
+.underline
+{
+text-decoration: underline;
+}
+
+.copyright:before
+{
+content:"\00a9";	
+}
+
+.copyright
+{
+padding-top: 10px;
+}
+
+
+
+.icon_color  a {
+    text-decoration: none;
+    color: #000000;
+}
+
+ul {
+    padding:0;
+    list-style: none;
+}
+
+ul li {
+	float: left;
+	padding: 5px;
+}
+
+.Icons {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+	
+}
+
+.fa-facebook, .fa-twitter, .fa-youtube, .fa-instagram, .fa-snapchat  {
+    padding:15px 20px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #FFFFFF;
+}
+
+.fa-facebook:hover {
+    background-color: #3d5b99;
+}
+
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+
+.fa-youtube:hover {
+    background-color: #e64a41;
+}
+
+.fa-instagram:hover {
+    background-color: #9b6954;
+}
+
+.fa-snapchat:hover {
+    background-color: #FFFC00;
+}
+
+
+
+
+
+
+
+
+
+
+.search_modal_style 
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.search_modal_content 
+{
+    text-align: center;
+    margin: auto;
+    background-color: #DEB887;
+    outline: 1px solid #000000;
+    width: 300px;
+    padding: .5em;
+    font-family: 'Spectral SC';
+    font-size: 10px;
+}
+
+.search_modal_content button
+{
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.search_modal_content button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+
+
+
+
+.create_modal_style 
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.create_modal_content 
+{
+    text-align: center;
+    margin: auto;
+    background-color: #DEB887;
+    outline: 1px solid #000000;
+    width: 400px;
+	height: 225px;
+    padding: .5em;
+    font-family: 'Spectral SC';
+    font-size: 10px;
+}
+
+
+.login_modal_style 
+{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.login_modal_content 
+{
+    text-align: center;
+    margin: auto;
+    background-color: #dd733a;
+    outline: 1px solid #000000;
+	height: 200px;
+    width: 300px;
+    padding: .5em;
+    font-family: 'Spectral SC';
+    font-size: 10px;
+	
+}
+
+.login_modal_content button
+{
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.login_modal_content button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #f5bc37;
+}
+
+
+.login_modal_content button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+input:hover 
+{
+	border: 2px solid #000000;
+	box-shadow: 0px 0px 4px #000000;
+}
+
+input:focus 
+{
+	background-color: #FFF5EE;
+}
+
+.button input
+{
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.button input:hover
+{
+border:none;
+box-shadow: none;
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+.rowspace
+{
+	margin: .5em;
+}
+
+.rowspace input
+{
+	margin: .5em;
+}
+
+fieldset
+{
+border:none;
+}
+
+.center_navigation_bar button
+{
+margin-top: 4px;
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.center_navigation_bar button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+.section_titles
+{
+padding-top:.5em;
+font-size:40px;
+text-decoration: underline;
+font-family: 'Spectral SC';
+text-align: center;
+}
+
+.section_sub_titles
+{
+font-size:20px;
+text-decoration: italic;
+font-family: 'Spectral SC';
+text-align: center;
+}
+
+.section_text_title
+{
+font-size:30px;
+text-decoration: underline;
+font-family: 'Spectral SC';
+text-align: center;
+}
+
+.section_text
+{
+font-family: 'Spectral SC';
+font-size:20px;
+text-indent: 50px;
+}
+
+.section_text_center
+{
+margin: auto;
+width: 50%;
+}
+
+.slideshow {
+  margin: auto;
+  position: relative;
+  width: 600px;
+  height: 375px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.features_container
+{
+margin: auto;
+text-align: center;
+width: 75%;
+}
+
+.features_container img
+{
+border-radius: 50%;
+height: 250px;
+width: 250px;
+}
+
+.features_container p
+{
+font-family: 'Spectral SC';
+}
+.feature_text_title
+{
+font-family: 'Spectral SC';
+text-decoration: underline;
+font-weight: bold;
+text-align: center;
+}
+
+.text_wrap
+{
+width: 50%;
+margin: auto;
+text-align: left;
+	
+}
+
+.app_round img
+{
+border-radius: 1px;
+}
+
+
+.img_text
+{
+background-color: #DEB887; 
+width: 725px;
+outline: 2px solid black;
+border-style: single;
+margin: auto;
+}
+
+td {
+    vertical-align: middle;
+    text-align: left;
+    padding: 1em;
+}
+td img {
+border-radius: 50%;
+vertical-align: middle;
+width: 200px;
+height: 200px;
+border: 1px solid black;
+}
+
+.font
+{
+font-family: 'Spectral SC';
+}
+
+.font_right
+{
+text-align: right;  
+font-family: 'Spectral SC';
+}
+
+.review_section
+{
+    padding: 1em;
+    outline: 2px solid black;
+    width: 500px;
+    height: 325px;
+    margin: auto;
+    background-color: #DEB887;
+    font-family: 'Spectral SC';
+}
+.review_section textarea
+{
+    resize: none;
+    width: 480px;
+    height: 150px;
+}
+
+textarea:hover 
+{
+	border: 2px solid #000000;
+	box-shadow: 0px 0px 4px #000000;
+}
+
+textarea:focus 
+{
+	background-color: #FFF5EE;
+}
+
+.review_section button
+{
+margin-top: 4px;
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.review_section button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+.FaqMenu:hover .FaqQuestion:hover .FaqAnswer,
+.FaqMenu .FaqQuestion--default .FaqAnswer {
+    height: 3em;
+}
+
+.FaqAnswer,
+.FaqMenu:hover .FaqAnswer {
+    height: 0;
+    overflow: hidden;
+    transition: height .25s;
+}
+
+.FaqMenu {
+    margin: auto;
+	padding-left: 3em;
+	padding-right: 3em;
+	padding-bottom: 2em;
+	padding-top: 1em;
+    width: 550px;
+	opacity: 1;
+	background-color: #DEB887;
+	border: 2px solid black;
+}
+.FaqQuestion {
+font-family: 'Spectral SC';
+  border-bottom: 1px solid #666;
+  padding: 1em;
+  color: black; 
+  width: auto;
+}
+
+.FaqAnswer
+{
+  padding-left: 1em;
+
+}
+
+
+.FaqMenu h1 {
+  margin: 0;
+  font-weight: normal;
+}
+
+.FaqQuestion h1
+{
+text-align: left;	
+}
+.FaqQuestion h1::before{ 
+     content: ' \2665' " ";
+} 
+
+.FaqAnswer p::before
+{ 
+     content: ' \25CF' " ";
+} 
+
+.FAQ
+{
+font-family: 'Spectral SC';
+opacity: none;
+font-size: 30px;
+text-align: center;
+padding-bottom: 0.5em;
+text-decoration: underline;
+}
+
+.question_section
+{
+    text-align: center;
+    padding: 1em;
+    outline: 2px solid black;
+    width: 500px;
+    height: 225px;
+    margin: auto;
+    background-color: #DEB887;
+    font-family: 'Spectral SC';
+}
+.question_section textarea
+{
+    resize: none;
+    width: 480px;
+    height: 100px;
+}
+
+.question_section button
+{
+margin-top: 4px;
+border-radius: 5px;
+background-color: #181818;
+color: #FFFFFF;
+font-family: 'Spectral SC';
+}
+
+.question_section button:hover
+{
+cursor:pointer;
+text-decoration: underline;
+color: #DEB887;
+}
+
+.pic_column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    
+}
+
+.pic_column img 
+{
+    margin-top: 12px;
+    width: 100%;
+    box-shadow: 10px 10px 5px #ccc;
+    transition: transform .2s;
+
+}
+
+.pic_column img:hover 
+{
+ transform: scale(1.5);
+ box-shadow: none;
+ border: 3px solid rgba(0, 0, 0, 0.4);
+
+
+}
+.pic_row
+{
+margin: auto;
+}
+
+.pic_grid_center
+{
+margin-left: 20%;
+}
+
