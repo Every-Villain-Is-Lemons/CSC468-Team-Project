@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<title>Gokuin Miner WebUI</title>
+<style>
+    h1 {
+        text-align: center;
+        background-color: whitesmoke;
+    }
+
+    table, th, td{
+        border: 2px solid black;
+        padding: 10px;
+        background-color: grey;
+    }
+
+    th {
+        text-decoration: underline;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .navigation_bar {
+        overflow: hidden;
+        background-color: #bd5d5d;
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+        z-index: 1000;
+    }
+
+.center_navigation_bar
+{
+  display: table;
+  margin: 0 auto;
+}
+
+.center_navigation_bar button
+{
+  margin-right: 125px;
+}
+
+.center_navigation_bar a 
+{
+	text-align: center;
+    float: left;
+    display: block;
+    color: #FFF5EE;
+    padding: 5px 40px;
+    text-decoration: none;
+	font-family: 'Spectral SC';
+}
+
+    .index_link {
+        text-decoration: underline;	
+    }
+
+    .center_navigation_bar a:hover {
+	    text-decoration: underline;
+	    color: #eca649;	
+    }
+
+</style>
+</head>
+<body>
+    <div class="navigation_bar">
+        <div class="center_navigation_bar">
+          <a href="About_Us.html"><span class="index_link">About Us</span></a>
+          <a href="WelcomePage.html"><span class="index_link">Gokoin</span></a>
+          <a href="UserPage.html"><span class="index_link">Go to User Page</span></a>
+        </div>
+    </div>
+    <div>
+    <h1>Leaderboard</h1>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>Coins</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Brennan</td>
+            <td>345</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bryan</td>
+            <td>173</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Tyler</td>
+            <td>150</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Ani</td>
+            <td>132</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Matthew</td>
+            <td>127</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>User</td>
+            <td>0</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
