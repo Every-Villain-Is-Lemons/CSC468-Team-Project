@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: webui
-        image: 127.0.0.1:30000/webui:v0.1
+        image: DOCKER_USER/DOCKER_APP:BUILD_NUMBER
         ports:
           - name: http-port
             containerPort: 80
