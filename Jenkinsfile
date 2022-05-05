@@ -3,6 +3,7 @@ pipeline {
     environment {
         registry = "thescavenger126/gokoins-rng"
         docker_user = "thescavenger126"
+        docker_app = "gokoins-webui"
         GOCACHE = "/tmp"
     }
     stages {
@@ -28,13 +29,12 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
+                    sh 'sed -i "s/DOCKER_USER/${docker_user}/g" rng.yml'
+                    sh 'sed -i "s/DOCKER_APP/${docker_app}/g" rng.yml'
+                    sh 'sed -i "s/BUILD_NUMBER/$BUILD_NUMBER/g" rng.yml'
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml tylerp@clnodevm020-1.clemson.cloudlab.us:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl create deployment rng --image=127.0.0.1:30000/rng:v0.1 -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl expose deployment rng --port 80 -n jenkins'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f dashboard-insecure.yml'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f socat.yml'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get namespace'
-                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl get svc -n kubernetes-dashboard'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/rng.yml -n jenkins'
+                    sh 'ssh -o StrictHostKeyChecking=no tylerp@clnodevm020-1.clemson.cloudlab.us kubectl apply -f /users/tylerp/rng-service.yml -n jenkins'
                 }
             }
         }
