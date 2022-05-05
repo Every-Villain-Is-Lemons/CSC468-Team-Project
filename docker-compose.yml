@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+
+  webui:
+    build: webui
+    ports:
+    - "8000:80"
+    volumes:
+    - "./webui/files/:/files/"
