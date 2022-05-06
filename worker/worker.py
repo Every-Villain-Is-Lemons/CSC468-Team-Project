@@ -27,7 +27,7 @@ def hash_bytes(data):
     r = requests.post("http://hasher/",
                       data=data,
                       headers={"Content-Type": "application/octet-stream"})
-    long.info("hot DAMN that's a lotta data!")
+    log.info("hot DAMN that's a lotta data!")
     hex_hash = r.text
     return hex_hash
 
