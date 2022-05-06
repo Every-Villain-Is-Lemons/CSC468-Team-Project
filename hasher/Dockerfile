@@ -1,8 +1,8 @@
-FROM python:alpine
-RUN pip install Flask
-RUN pip install --upgrade setuptools
-RUN pip install ez_setup
-
-COPY hasher/hasher.py /
-CMD ["python", "hasher.py"]
+FROM ruby:alpine
+RUN apk update
+RUN apk add --update build-base curl
+RUN gem install sinatra
+RUN gem install thin
+ADD hasher/hasher.rb /
+CMD ["ruby", "hasher.rb"]
 EXPOSE 80
