@@ -1,14 +1,18 @@
 from flask import Flask, Response
+import os
 import socket
 import time
+import logging
 
 app = Flask(__name__)
 
 # Enable debugging if the DEBUG environment variable is set and starts with Y
 app.debug = os.environ.get("DEBUG", "").lower().startswith('y')
 
-hostname = socket.gethostname()
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
+hostname = socket.gethostname()
 
 @app.route("/")
 def index():
@@ -18,8 +22,8 @@ def index():
 @app.route("/<string:binary_string>")
 def hasher(binary_string):
     # Simulate a little bit of delay
+    log.info("Boutta fall asleep bro")
     time.sleep(0.1)
-
 
     return Response(
         os.read(urandom, how_many_bytes),
